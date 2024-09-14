@@ -16,7 +16,7 @@ impl DataLogger {
             let mut file = options.open(file_name)?;
             writeln!(
                 &mut file,
-                "Time,ADC_Ch1,ADC_Ch2,ADC_Ch3,ADC_Ch4,Temperature,Pressure,Acc_X,Acc_Y,Acc_Z,Mag_X,Mag_Y,Mag_Z,Gyro_X,Gyro_Y,Gyro_Z"
+                "Time,ADC_Ch1,ADC_Ch2,ADC_Ch3,ADC_Ch4,Temperature,Pressure,Acc_X,Acc_Y,Acc_Z,Gyro_X,Gyro_Y,Gyro_Z"
             )?;
             file
         } else {
@@ -46,9 +46,6 @@ impl DataLogger {
             sensors_data.accelerometer.x,
             sensors_data.accelerometer.y,
             sensors_data.accelerometer.z,
-            sensors_data.magnetometer.x,
-            sensors_data.magnetometer.y,
-            sensors_data.magnetometer.z,
             sensors_data.gyro.x,
             sensors_data.gyro.y,
             sensors_data.gyro.z

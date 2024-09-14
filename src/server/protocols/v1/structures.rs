@@ -133,7 +133,6 @@ pub enum InputDeviceType {
     Altitude,
     Accelerometer,
     Gyroscope,
-    Magnetometer,
     Adc,
 }
 #[derive(Debug, Serialize, Deserialize)]
@@ -152,7 +151,6 @@ impl InputDevices {
             InputDeviceType::Altitude => "m".to_string(),
             InputDeviceType::Accelerometer => "m/s2".to_string(),
             InputDeviceType::Gyroscope => "rad/s".to_string(),
-            InputDeviceType::Magnetometer => "uT".to_string(),
             InputDeviceType::Adc => "V".to_string(),
         };
 

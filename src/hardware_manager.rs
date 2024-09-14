@@ -90,7 +90,6 @@ impl NavigationManager {
                 temperature: lock.navigator.read_temperature(),
                 pressure: lock.navigator.read_pressure(),
                 accelerometer: lock.navigator.read_accel(),
-                magnetometer: lock.navigator.read_mag(),
                 gyro: lock.navigator.read_gyro(),
                 leak: lock.navigator.read_leak(),
             };
@@ -256,10 +255,6 @@ pub fn read_gyro() -> AxisData {
     with_navigator!().read_gyro().into()
 }
 
-pub fn read_mag() -> AxisData {
-    with_navigator!().read_mag().into()
-}
-
 pub fn read_temperature() -> f32 {
     with_navigator!().read_temperature()
 }
@@ -281,10 +276,6 @@ pub mod cached {
 
     pub fn read_gyro() -> AxisData {
         DATA.read().unwrap().state.gyro.into()
-    }
-
-    pub fn read_mag() -> AxisData {
-        DATA.read().unwrap().state.magnetometer.into()
     }
 
     pub fn read_temperature() -> f32 {

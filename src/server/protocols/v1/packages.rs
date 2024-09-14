@@ -18,7 +18,6 @@ pub enum Sensors {
     Pressure,
     Accelerometer,
     Gyroscope,
-    Magnetometer,
     Adc,
 }
 
@@ -34,7 +33,6 @@ impl FromStr for Sensors {
             "pressure" => Ok(Sensors::Pressure),
             "accelerometer" => Ok(Sensors::Accelerometer),
             "gyroscope" => Ok(Sensors::Gyroscope),
-            "magnetometer" => Ok(Sensors::Magnetometer),
             "adc" => Ok(Sensors::Adc),
             _ => Err(format!("{} is not a valid Sensors variant", s).into()),
         }
@@ -187,7 +185,6 @@ pub fn reading(selection: Sensors, cache: bool) -> AnsPackage {
                 Sensors::Pressure,
                 Sensors::Accelerometer,
                 Sensors::Gyroscope,
-                Sensors::Magnetometer,
                 Sensors::Adc,
             ]
         }
@@ -212,10 +209,6 @@ pub fn reading(selection: Sensors, cache: bool) -> AnsPackage {
                 Sensors::Gyroscope => sensor_reading.input.push(InputDevices::new(
                     InputDeviceType::Gyroscope,
                     Value::Array(hardware_manager::read_gyro().into()),
-                )),
-                Sensors::Magnetometer => sensor_reading.input.push(InputDevices::new(
-                    InputDeviceType::Magnetometer,
-                    Value::Array(hardware_manager::read_mag().into()),
                 )),
                 Sensors::Adc => sensor_reading.input.push(InputDevices::new(
                     InputDeviceType::Adc,
@@ -242,10 +235,6 @@ pub fn reading(selection: Sensors, cache: bool) -> AnsPackage {
                 Sensors::Gyroscope => sensor_reading.input.push(InputDevices::new(
                     InputDeviceType::Gyroscope,
                     Value::Array(hardware_manager::cached::read_gyro().into()),
-                )),
-                Sensors::Magnetometer => sensor_reading.input.push(InputDevices::new(
-                    InputDeviceType::Magnetometer,
-                    Value::Array(hardware_manager::cached::read_mag().into()),
                 )),
                 Sensors::Adc => sensor_reading.input.push(InputDevices::new(
                     InputDeviceType::Adc,
