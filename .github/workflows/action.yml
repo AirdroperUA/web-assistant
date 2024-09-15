@@ -82,7 +82,7 @@ jobs:
         - TARGET: aarch64-unknown-linux-musl
     steps:
     - name: Download ${{ matrix.TARGET }} artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: ${{ matrix.TARGET }}
         path: ${{ matrix.TARGET }}
