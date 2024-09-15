@@ -70,7 +70,6 @@ jobs:
         path: dist
 
   release-assets:
-    needs: ["test-local"]
     runs-on: ubuntu-latest
     if: "startsWith(github.ref, 'refs/tags/')"
     strategy:
