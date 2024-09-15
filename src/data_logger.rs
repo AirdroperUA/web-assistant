@@ -28,7 +28,7 @@ impl DataLogger {
 
     pub fn log_data(
         &mut self,
-        sensors_data: &navigator_rs::SensorData,
+        sensors_data: &air_navigator_rs::SensorData,
     ) -> Result<(), std::io::Error> {
         let current_time: DateTime<Local> = Local::now();
         let time_str = current_time.format("%Y-%m-%d %H:%M:%S").to_string();

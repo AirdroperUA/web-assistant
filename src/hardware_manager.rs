@@ -11,14 +11,14 @@ use strum_macros::EnumIter;
 
 #[derive(Default)]
 struct NavigationManager {
-    navigator: navigator_rs::Navigator,
+    navigator: air_navigator_rs::Navigator,
     monitor: Option<std::thread::JoinHandle<()>>,
     datalogger: Option<std::thread::JoinHandle<()>>,
 }
 
 #[derive(Debug, Clone, Default, Copy)]
 struct Data {
-    state: navigator_rs::SensorData,
+    state: air_navigator_rs::SensorData,
 }
 
 macro_rules! with_navigator {
@@ -79,10 +79,10 @@ impl NavigationManager {
 
             let mut lock = Self::get_instance().lock().unwrap();
 
-            let reading = navigator_rs::SensorData {
+            let reading = air_navigator_rs::SensorData {
                 adc: {
                     if refresh_interval_us < 10000 {
-                        navigator_rs::ADCData { channel: [0.0; 4] }
+                        air_navigator_rs::ADCData { channel: [0.0; 4] }
                     } else {
                         lock.navigator.read_adc_all()
                     }
@@ -140,7 +140,7 @@ impl NavigationManager {
 
 impl_from_enum!(
     PwmChannel,
-    navigator_rs::PwmChannel,
+    air_navigator_rs::PwmChannel,
     Ch1,
     Ch2,
     Ch3,
@@ -160,8 +160,8 @@ impl_from_enum!(
     All
 );
 
-impl From<navigator_rs::AxisData> for AxisData {
-    fn from(read_axis: navigator_rs::AxisData) -> Self {
+impl From<air_navigator_rs::AxisData> for AxisData {
+    fn from(read_axis: air_navigator_rs::AxisData) -> Self {
         Self {
             x: read_axis.x,
             y: read_axis.y,
@@ -170,8 +170,8 @@ impl From<navigator_rs::AxisData> for AxisData {
     }
 }
 
-impl From<navigator_rs::ADCData> for ADCData {
-    fn from(read_adc: navigator_rs::ADCData) -> Self {
+impl From<air_navigator_rs::ADCData> for ADCData {
+    fn from(read_adc: air_navigator_rs::ADCData) -> Self {
         Self {
             channel: [
                 read_adc.channel[0],
@@ -211,7 +211,7 @@ pub enum UserLed {
     Led3,
 }
 
-impl_from_enum!(UserLed, navigator_rs::UserLed, Led1, Led2, Led3);
+impl_from_enum!(UserLed, air_navigator_rs::UserLed, Led1, Led2, Led3);
 
 pub struct AxisData {
     x: f32,
