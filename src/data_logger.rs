@@ -35,7 +35,7 @@ impl DataLogger {
 
         writeln!(
             &mut self.file,
-            "{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}",
+            "{},{},{},{},{},{},{},{},{},{},{},{},{}",
             time_str,
             sensors_data.adc.channel[0],
             sensors_data.adc.channel[1],
